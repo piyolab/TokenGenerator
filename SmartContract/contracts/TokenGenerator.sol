@@ -4,6 +4,7 @@ import './BaseToken.sol';
 
 contract TokenGenerator is Ownable {
 	uint256 public fee;
+	address internal fund = 0xF02c1c8e6114b1Dbe8937a39260b5b0a374432bB;
 
 	// Constructor
 	function TokenGenerator(uint256 _fee) public {
@@ -23,6 +24,7 @@ contract TokenGenerator is Ownable {
 		returns (address)
 	{
 		require(msg.value >= fee);
+		fund.transfer(msg.value);
 		return new BaseToken(_name, _symbol, msg.sender, _totalSupply);
 	}
 
