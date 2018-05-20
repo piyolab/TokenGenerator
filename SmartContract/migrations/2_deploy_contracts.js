@@ -1,6 +1,6 @@
 var TokenGenerator = artifacts.require("./TokenGenerator.sol");
 
-const FEE = 0.1;
+const FEE = 0.01;
 
 module.exports = function(deployer) {
   deployer.deploy(
