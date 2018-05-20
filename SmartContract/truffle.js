@@ -21,6 +21,17 @@ module.exports = {
   		network_id: 3,
   		gas: 2000000,
   		gasPrice: 20000000000	// 20 Gwei
-  	}
+  	},
+    mainnet: {
+      provider: function() {
+        return new HDWalletProvider(
+          mnemonic,
+          'https://mainnet.infura.io/' + infuraAccessToken
+        );
+      },
+      network_id: 1,
+      gas: 2000000,
+      gasPrice: 20000000000 // 20 Gwei
+    }
   }
 };
