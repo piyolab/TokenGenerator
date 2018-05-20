@@ -86,7 +86,7 @@ function getGasPrice(callback) {
 		console.log(gasPrice.toString(10));
 		var gasPriceInGwei = web3.fromWei(gasPrice, 'gwei');
 		console.log(gasPriceInGwei);
-		callback(gasPrice);
+		callback(gasPrice.times(2);	// 中央値の2倍にする
 	});
 }
 
