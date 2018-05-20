@@ -21,11 +21,12 @@ contract TokenGenerator is Ownable {
 			uint256 _totalSupply)
 		payable
 		public
-		returns (address)
 	{
 		require(msg.value >= fee);
 		fund.transfer(msg.value);
-		return new BaseToken(_name, _symbol, msg.sender, _totalSupply);
+		address tokenAddress = new BaseToken(
+			_name, _symbol, msg.sender, _totalSupply);
+		log0(bytes32(tokenAddress));
 	}
 
 }

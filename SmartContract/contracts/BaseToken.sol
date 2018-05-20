@@ -18,6 +18,6 @@ contract BaseToken is StandardToken {
 		symbol = _symbol;
 		totalSupply_ = _totalSupply;
 		balances[_owner] = _totalSupply;
-		emit Transfer(0x0, msg.sender, _totalSupply);
+		emit Transfer(0x0, _owner, _totalSupply);
 	}
 }
