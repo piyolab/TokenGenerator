@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Token Generator</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+	<script src="./web3.min.js"></script>
+	<script src="./main.js"></script>
+	<style type="text/css">
+		h2 {
+			margin: 40px 0 20px 0;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1>ERC20 Token Generator</h1>
+		<p>Create your own Ethereum ERC20 token in few seconds!</p>
+		<p>これは、オリジナル暗号通貨（Ethereum ERC20トークン）を作成できるツールです。</p>
+		<p>特にプログラミング等の知識を必要とせず、以下の手順に従うと簡単にオリジナル暗号通貨を作成することができます。</p>
+		<p>ERC20トークンの実体はスマートコントラクトですが、このツール自体もスマートコントラクトで作られています。つまり、「スマートコントラクトでスマートコントラクトを生成する」形になります。</p>
+		<p>このツールにより、より多くのひとがオリジナルのトークンを作成したり配布したりできるようにすることで、素早く実験したり面白いアイディアを簡単に試すことができればと考えています。</p>
+
+		<div class="alert alert-warning alert-dismissible fade show" role="alert">
+			<h4 class="alert-heading">注意および免責</h4>
+			このツールを使用して発生した損害等について、作者は一切の責任を負うことができません。あらかじめご了承のうえご利用ください。また、Ethereum ネットワークの混雑状況等の影響により、	トークン作成までに時間を要したり、トークン作成に失敗することもあります。
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+  			</button>
+		</div>
+
+		<div id="STEP1">
+			<h2><a name="STEP1">STEP1: Ether (ETH) を入手する</a></h2>
+			<p>このツールで ERC20トークンを作成するためには、以下の費用がかかります。</p>
+			<ul>
+				<li>ツール使用手数料: 0.01 ETH</li>
+				<li>Ethereumネットワークの手数料 (Gas): およそ 0.01 - 0.04 ETH</li>
+			</ul>
+			<p>また、作成した ERC20トークンを他のウォレットに送信するためにも Gas が必要になるため、およそ 0.1 ETH ほど用意しておくと良いでしょう。</p>
+		</div>
+
+		<div id="STEP2">
+			<h2><a name="STEP2">STEP2: MetaMask をインストールする</a></h2>
+			<p>すでに MetaMask をインストールしている場合は、<a href="#STEP4">STEP4</a> に進んでください。</p>
+			<p>このツール自体が Etheruem のスマートコントラクトで作られているため、Etheruem のスマートコントラクトをブラウザから簡単に扱うことのできる <a href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn">MetaMask</a> という Ethereum ウォレットを使用します。MetaMask は Chrome ブラウザのプラグインとして動作するので、Chrome 
+			を使用する必要があります	。</p>
+			<p>MetaMask は、次のリンクからインストールすることができます。</p>
+			<p><a href="https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn">MetaMask をインストール</a></p>
+		</div>
+
+		<div id="STEP3">
+			<h2><a name="STEP3">STEP3: MetaMask のアカウントを作成</a></h2>
+			<p>MetaMask をインストールしたら、Chrome ブラウザの MetaMask アイコン <img src="./images/metamask.png" width="20px"> をクリックします。</p>
+			<p>まだアカウントを作成していない場合は、利用規約に同意し、"ACCEPT" ボタンを押下する必要があります。</p>
+			<p>"ACCEPT" ボタンを押下後、パスワードを入力し、アカウントを作成します。</p>
+			<p>正常に MetaMask のアカウントが作成できていると、以下に MetaMask アカウントのアドレスが表示されます。</p>
+
+			<div class="form-group">
+		   		<div class="col-8">
+		   			<label for="step3-metamask-address">MetaMask アドレス</label>
+		   			<input type="text" class="form-control" id="step3-metamask-address" readonly></input>
+				</div>
+			</div>
+			<p>もし、アドレスが表示されていない場合は、ブラウザをリロードしてください。</p>
+		</div>
+
+		<div id="STEP4">
+			<h2><a name="STEP4">STEP4: MetaMask に Ether (ETH) を送付</a></h2>
+			<p>作成した MetaMask のアドレスに Ether (ETH) を送付しておきます。</p>
+		</div>
+
+		<div id="STEP5">
+			<h2><a name="STEP5">STEP5: ERC20トークンを作成</a></h2>
+			<p>次のフォームに必要項目を入力し、"CREATE MY TOKEN" ボタンを押します。</p>
+
+			<div class="form-group">
+		   		<div class="col-5">
+					<label for="token-name">トークン名</label>
+				    <input type="text" class="form-control" id="token-name" placeholder="My Token">
+			        <small class="form-text text-muted">トークンの名前を半角英数字で入力します。例: Ether</small>
+				</div>
+			</div>
+			<div class="form-group">
+		   		<div class="col-5">
+					<label for="token-symbol">トークンシンボル</label>
+				    <input type="text" class="form-control " id="token-symbol" placeholder="MTN">
+			        <small class="form-text text-muted">トークンの略称を半角英数字で入力します。例: ETH</small>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-5">
+				   	<label for="token-totalsupply">トークン最大供給量</label>
+				    <input type="number" class="form-control" id="token-totalsupply" placeholder="21000000">
+				    <small class="form-text text-muted">1以上の整数でトークンの最大供給量を指定します。トークンの作成後、すべてのトークンはトークン作成者のアドレスに送付されます。</small>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-5">
+					<button class="btn btn-primary" id="create-token">CREATE MY TOKEN</button>
+				</div>
+			</div>
+
+			<p>"CREATE MY TOKEN" ボタンを押すと、つぎのように MetaMask の画面が表示されるので、内容を確認して、"SUBMIT" ボタンを押下します。</p>
+
+			<div><img src="./images/step5_01.png" class="rounded mx-auto d-block" width="300px"></div>
+
+			<div class="alert alert-warning alert-dismissible fade show" role="alert">
+				正常にトランザクションが実行されると、以下に「トランザクションハッシュ」と呼ばれるトランザクションの ID にあたるものが表示されるので、必ず控えてください。
+			</div>
+
+			<div class="form-group">
+		   		<div class="col-12">
+		   			<label for="step5-tx-hash">トランザクションハッシュ</label>
+		   			<input type="text" class="form-control" id="step5-tx-hash" readonly></input>
+				</div>
+			</div>
+
+			<h3>トランザクション状況の確認</h3>
+			<p>トランザクションの状況は、つぎのリンクから確認することができます。 </p>
+			<p><a id="etherscan-tx-link" target="_blank">Etherscan</a></p>	
+
+			<p>トランザクションが送信されてから、実際にブロックに取り込まれるまで数十秒から数分かかります。</p>
+		</div>
+
+		<div id="STEP6">
+			<h2><a name="STEP6">STEP6: ERC20トークンを確認</a></h2>
+			<p>以下のフォームにトランザクションハッシュを入力し、"CHECK TOKEN ADDRESS" ボタンを押下すると、ERC20トークンのアドレスを表示することができます。</p>
+			<p>STEP5 で実行したトランザクションがブロックに取り込まれるまで数十秒から数分時間がかかるため、しばらく待ってからこのステップを完了してください。</p>
+
+			<div class="form-group">
+		   		<div class="col-12">
+		   			<label for="step6-tx-hash">トランザクションハッシュ</label>
+		   			<input type="text" class="form-control" id="step6-tx-hash"></input>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-5">
+					<button class="btn btn-primary" id="check-token">CHECK TOKEN ADDRESS</button>
+				</div>
+			</div>
+			<div class="form-group">
+		   		<div class="col-8">
+		   			<label for="step6-token-address">トークンアドレス</label>
+		   			<input type="text" class="form-control" id="step6-token-address" readonly></input>
+				</div>
+			</div>
+
+			<h3>トークン詳細情報の確認</h3>
+			<p>トークンの詳細情報は、つぎのリンクから確認することができます。 </p>
+			<p><a id="etherscan-token-link" target="_blank">Etherscan</a></p>
+
+			<h3>MetaMask にトークンを追加</h3>
+			<p>トークンアドレスを取得したら、MetaMask にトークンアドレスを追加します。</p>
+			<p>まず、トークンアドレスをコピーしておきます。 </p>	
+			<p>つぎに、ブラウザの MetaMask アイコン <img src="./images/metamask.png" width="20px"> をクリックし、TOKENSタブを開き、"ADD TOKEN"ボタンを押下します。</p>
+			<div><img src="./images/step6_01.png" class="rounded mx-auto d-block" width="300px"></div>
+
+			<p>"Token Contract Address"という項目に、先ほどコピーしたトークンアドレスを入力し、"ADD" ボタンを押下します。</p> 
+			<div><img src="./images/step6_02.png" class="rounded mx-auto d-block" width="300px"></div>
+
+			<p>トークンが正常に追加されていることを確認します。</p>
+			<div><img src="./images/step6_03.png" class="rounded mx-auto d-block" width="300px"></div>
+		</div>
+
+		<div id="STEP7">
+			<h2><a name="STEP7">STEP7: ERC20トークンを他のウォレットに送付</a></h2>
+			<p>MetaMask だけでは、ERC20トークンの送付ができないので、MyEtherWallet を併用します。</p>
+
+			<p>まず、<a href="https://www.myetherwallet.com/#send-transaction">MyEtherWallet</a> の、"Send Ether & Tokens" を開きます。</p>
+			<p>"MetaMask / Mist"という項目を選択し、"Connect to MetaMask" ボタンを押下します。</p>
+			<div><img src="./images/step7_01.png" class="rounded mx-auto d-block" width="300px"></div>
+
+			<h3>MyEtherWallet にトークンを追加</h3>
+			<p>つぎに、MyEtherWallet でもトークンを認識できるようにするため、画面右下の "Token Balances" の "Add Custom Token" ボタンをクリックします。</p>
+			<div><img src="./images/step7_02.png" class="rounded mx-auto d-block" width="300px"></div>
+
+			<p>"Token Contract Address" にトークンアドレス、"Token Symbol" にトークンシンボル、Decimals に 18 を入力して、"Save" ボタンをクリックします。</p>
+			<div><img src="./images/step7_03.png" class="rounded mx-auto d-block" width="300px"></div>
+
+			<p>つぎのようにトークンが正常に表示されることを確認します。</p>
+			<div><img src="./images/step7_04.png" class="rounded mx-auto d-block" width="300px"></div>
+
+			<h3>他のウォレット（アドレス）にトークンを送付</h3>
+			<p>まず、"To Address" にトークンの送付先アドレスを入力します。</p>
+
+			<p>つぎに、ETH と表示されている箇所をクリックし、プルダウンからトークンシンボルを選択します。</p>
+			<div><img src="./images/step7_05.png" class="rounded mx-auto d-block" width="300px"></div>
+
+			<p>"Amount to Send" に送付するトークンの量を指定し、"Generate Transaction", "Send Transaction", "Yes, I am sure! Make transaction." の順にボタンを押下すると、MetaMask の確認画面が表示されるので、"SUBMIT" ボタンを押下します。</p>
+
+			<p>送付先のアドレスでも、この STEP7「MyEtherWallet にトークンを追加」の手順を踏むことで、送付されたトークンを確認することができます。</p>
+
+		</div>
+
+
+  	</div>
+</body>
+</html>
