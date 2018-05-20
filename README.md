@@ -1,5 +1,7 @@
 # TokenGenerator
 
+* Contract address: `0x12b2ea423a5b8542c270cb8e53bf9d2381b63f22` [Etherscan](https://etherscan.io/address/0x12b2ea423a5b8542c270cb8e53bf9d2381b63f22)
+
 ## Development
 
 ```
