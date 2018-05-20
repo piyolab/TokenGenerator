@@ -13,6 +13,13 @@
 		h2 {
 			margin: 40px 0 20px 0;
 		}
+		h3 {
+			margin: 30px 0 10px 0;
+		}
+		@media (min-width: 600px)
+		.container {
+			max-width: 680px;
+		}
 	</style>
 </head>
 <body>
@@ -39,7 +46,7 @@
 				<li>ツール使用手数料: 0.01 ETH</li>
 				<li>Ethereumネットワークの手数料 (Gas): およそ 0.01 - 0.04 ETH</li>
 			</ul>
-			<p>また、作成した ERC20トークンを他のウォレットに送信するためにも Gas が必要になるため、およそ 0.1 ETH ほど用意しておくと良いでしょう。</p>
+			<p>また、作成した ERC20トークンを他のウォレットに送信するためにも Gas が必要になるため、およそ 0.05 - 0.1 ETH ほど用意しておくと良いでしょう。</p>
 		</div>
 
 		<div id="STEP2">
@@ -70,6 +77,7 @@
 		<div id="STEP4">
 			<h2><a name="STEP4">STEP4: MetaMask に Ether (ETH) を送付</a></h2>
 			<p>作成した MetaMask のアドレスに Ether (ETH) を送付しておきます。</p>
+			<p>およそ 0.05 - 0.1 ETH ほど用意しておくと良いでしょう。</p>
 		</div>
 
 		<div id="STEP5">
@@ -103,9 +111,16 @@
 				</div>
 			</div>
 
-			<p>"CREATE MY TOKEN" ボタンを押すと、つぎのように MetaMask の画面が表示されるので、内容を確認して、"SUBMIT" ボタンを押下します。</p>
+			<p>"CREATE MY TOKEN" ボタンを押すと、MetaMask の画面が表示されるので、内容を確認して、"SUBMIT" ボタンを押下します。</p>
 
-			<div><img src="./images/step5_01.png" class="rounded mx-auto d-block" width="300px"></div>
+			<div class="card m-4 mx-auto" style="width: 24rem;">				
+				<div class="card-body">
+					<h5 class="card-title">MetaMask 確認画面</h5>
+					<img class="card-img-top" src="./images/step5_01.png">
+					<p class="card-text">内容を確認して、"SUBMIT" ボタンを押下します。Gas Limit は変更しないでください。Gas Price は調整することができますが、Gas Price を低くしすぎるとブロックに取り込まれるまでに時間がかかるため、通常は変更しないことをおすすめします。</p>
+				</div>
+			</div>
+
 
 			<div class="alert alert-warning alert-dismissible fade show" role="alert">
 				正常にトランザクションが実行されると、以下に「トランザクションハッシュ」と呼ばれるトランザクションの ID にあたるものが表示されるので、必ず控えてください。
@@ -156,14 +171,32 @@
 			<h3>MetaMask にトークンを追加</h3>
 			<p>トークンアドレスを取得したら、MetaMask にトークンアドレスを追加します。</p>
 			<p>まず、トークンアドレスをコピーしておきます。 </p>	
-			<p>つぎに、ブラウザの MetaMask アイコン <img src="./images/metamask.png" width="20px"> をクリックし、TOKENSタブを開き、"ADD TOKEN"ボタンを押下します。</p>
-			<div><img src="./images/step6_01.png" class="rounded mx-auto d-block" width="300px"></div>
+			<p>つぎに、ブラウザの MetaMask アイコン <img src="./images/metamask.png" width="20px"> をクリックし、TOKENSタブを開き、"ADD TOKEN"ボタンを押下し、"Token Contract Address"にトークンアドレスを入力します。</p>
 
-			<p>"Token Contract Address"という項目に、先ほどコピーしたトークンアドレスを入力し、"ADD" ボタンを押下します。</p> 
-			<div><img src="./images/step6_02.png" class="rounded mx-auto d-block" width="300px"></div>
 
-			<p>トークンが正常に追加されていることを確認します。</p>
-			<div><img src="./images/step6_03.png" class="rounded mx-auto d-block" width="300px"></div>
+			<div class="card m-4 mx-auto" style="width: 24rem;">				
+				<div class="card-body">
+					<h5 class="card-title">MetaMask TOKENS タブ画面</h5>
+					<img class="card-img-top" src="./images/step6_01.png">
+					<p class="card-text">TOKENSタブの"ADD TOKEN"ボタンをクリックします。</p>
+				</div>
+			</div>
+
+			<div class="card m-4 mx-auto" style="width: 24rem;">				
+				<div class="card-body">
+					<h5 class="card-title">MetaMask トークン追加画面</h5>
+					<img class="card-img-top" src="./images/step6_02.png">
+					<p class="card-text">"Token Contract Address"という項目に、先ほどコピーしたトークンアドレスを入力し、"ADD" ボタンを押下します。</p>
+				</div>
+			</div>
+
+			<div class="card m-4 mx-auto" style="width: 24rem;">				
+				<div class="card-body">
+					<h5 class="card-title">トークンを確認</h5>
+					<img class="card-img-top" src="./images/step6_03.png">
+					<p class="card-text">トークンが正常に追加されていることを確認します。</p>
+				</div>
+			</div>
 		</div>
 
 		<div id="STEP7">
@@ -171,26 +204,59 @@
 			<p>MetaMask だけでは、ERC20トークンの送付ができないので、MyEtherWallet を併用します。</p>
 
 			<p>まず、<a href="https://www.myetherwallet.com/#send-transaction" target="_blank">MyEtherWallet</a> の、"Send Ether & Tokens" を開きます。</p>
-			<p>"MetaMask / Mist"という項目を選択し、"Connect to MetaMask" ボタンを押下します。</p>
-			<div><img src="./images/step7_01.png" class="rounded mx-auto d-block" width="300px"></div>
+
+			<div class="card m-4 mx-auto" style="width: 24rem;">				
+				<div class="card-body">
+					<h5 class="card-title">MyEtherWallet "Send Ether & Tokens" 画面</h5>
+					<img class="card-img-top" src="./images/step7_01.png">
+					<p class="card-text">"MetaMask / Mist"という項目を選択し、"Connect to MetaMask" ボタンを押下します。</p>
+				</div>
+			</div>
 
 			<h3>MyEtherWallet にトークンを追加</h3>
-			<p>つぎに、MyEtherWallet でもトークンを認識できるようにするため、画面右下の "Token Balances" の "Add Custom Token" ボタンをクリックします。</p>
-			<div><img src="./images/step7_02.png" class="rounded mx-auto d-block" width="300px"></div>
+			<p>つぎに、MyEtherWallet でもトークンを認識できるようにするため、画面右下の "Token Balances" の "Add Custom Token" ボタンをクリックし、"Token Contract Address"にトークンアドレスを入力します。"Token Symbol" にはトークンシンボル、Decimals には 18 を入力します。</p>
 
-			<p>"Token Contract Address" にトークンアドレス、"Token Symbol" にトークンシンボル、Decimals に 18 を入力して、"Save" ボタンをクリックします。</p>
-			<div><img src="./images/step7_03.png" class="rounded mx-auto d-block" width="300px"></div>
+			<div class="card m-4 mx-auto" style="width: 24rem;">				
+				<div class="card-body">
+					<h5 class="card-title">MyEtherWallet 画面右下の "Token Balances"</h5>
+					<img class="card-img-top" src="./images/step7_02.png">
+					<p class="card-text">"Add Custom Token" ボタンをクリックします。</p>
+				</div>
+			</div>
 
-			<p>つぎのようにトークンが正常に表示されることを確認します。</p>
-			<div><img src="./images/step7_04.png" class="rounded mx-auto d-block" width="300px"></div>
+			<div class="card m-4 mx-auto" style="width: 24rem;">				
+				<div class="card-body">
+					<h5 class="card-title">トークンを追加</h5>
+					<img class="card-img-top" src="./images/step7_03.png">
+					<p class="card-text">"Token Contract Address" にトークンアドレス、"Token Symbol" にトークンシンボル、Decimals に 18 を入力して、"Save" ボタンをクリックします。</p>
+				</div>
+			</div>
+
+			<div class="card m-4 mx-auto" style="width: 24rem;">				
+				<div class="card-body">
+					<h5 class="card-title">トークンを確認</h5>
+					<img class="card-img-top" src="./images/step7_04.png">
+					<p class="card-text">トークンが正常に表示されることを確認します。</p>
+				</div>
+			</div>
 
 			<h3>他のウォレット（アドレス）にトークンを送付</h3>
 			<p>まず、"To Address" にトークンの送付先アドレスを入力します。</p>
-
 			<p>つぎに、ETH と表示されている箇所をクリックし、プルダウンからトークンシンボルを選択します。</p>
-			<div><img src="./images/step7_05.png" class="rounded mx-auto d-block" width="300px"></div>
 
-			<p>"Amount to Send" に送付するトークンの量を指定し、"Generate Transaction", "Send Transaction", "Yes, I am sure! Make transaction." の順にボタンを押下すると、MetaMask の確認画面が表示されるので、"SUBMIT" ボタンを押下します。</p>
+			<div class="card m-4 mx-auto" style="width: 24rem;">				
+				<div class="card-body">
+					<h5 class="card-title">トークンシンボルを確認</h5>
+					<img class="card-img-top" src="./images/step7_05.png">
+					<p class="card-text">ETH と表示されている箇所をクリックし、プルダウンからトークンシンボルを選択します。</p>
+				</div>
+			</div>
+
+			<p>"Amount to Send" に送付するトークンの量を指定すると、Gas Limit が自動で調整されます。Gas Limit が自動で調整されない場合は、40000 程度を指定しておくと良いでしょう。</p>
+
+			<p>さいごに、"Generate Transaction", "Send Transaction", "Yes, I am sure! Make transaction." の順にボタンを押下すると、MetaMask の確認画面が表示されるので、"SUBMIT" ボタンを押下します。</p>
+
+			<p>しばらくすると、トランザクションがブロックに取り込まれ、トークンの送付が完了します。</p>	
 
 			<p>送付先のアドレスでも、この STEP7「MyEtherWallet にトークンを追加」の手順を踏むことで、送付されたトークンを確認することができます。</p>
 
